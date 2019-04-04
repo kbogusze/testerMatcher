@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DeviceCache {
 
@@ -46,5 +47,9 @@ public class DeviceCache {
 
     public static int getCacheSize() {
         return getInstance().list.size();
+    }
+
+    public static List<String> getDeviceList() {
+        return getInstance().list.stream().map(t->t.getDescription()).distinct().collect(Collectors.toList());
     }
 }

@@ -10,4 +10,9 @@ class TesterCacheTest {
     void getCacheSize() {
         assertTrue(TesterCache.getCacheSize()>0);
     }
+
+    @Test
+    void getCountryList() {
+        assertTrue(TesterCache.getCountryList().contains("JP"));
+    }
 }
