@@ -8,8 +8,6 @@ import java.util.Optional;
 @Getter
 @Setter
 public class TesterScore {
-    String testerId;
-
     String firstName;
 
     String lastName;
@@ -25,7 +23,6 @@ public class TesterScore {
     String nowHave;
 
     public TesterScore(Tester t) {
-        this.testerId = t.getTesterId();
         this.firstName = t.getFirstName();
         this.lastName = t.getLastName();
         this.country = t.getCountry();

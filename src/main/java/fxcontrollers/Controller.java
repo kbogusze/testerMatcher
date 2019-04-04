@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 public class Controller {
@@ -47,14 +49,16 @@ public class Controller {
         DevicesBox.getItems().addAll(DeviceCache.getDeviceList());
 
         initalizeTable();
+        makeTesterRank();
     }
 
     private void initalizeTable() {
         Field[] allFields = TesterScore.class.getDeclaredFields();
         List<Field> privateFields = Arrays.asList(allFields);
+        ResourceBundle bundle = ResourceBundle.getBundle("language.UIResources",new Locale("en"));
 
         for(Field te : privateFields){
-            TableColumn<TesterScore, String> column = new TableColumn<>(te.getName());
+            TableColumn<TesterScore, String> column = new TableColumn<>(bundle.getString(te.getName()));
             column.setCellValueFactory(new PropertyValueFactory<>(te.getName()));
             column.prefWidthProperty().bind(ResultTable.widthProperty().divide(privateFields.size()));
             ResultTable.getColumns().add(column);
@@ -67,25 +71,32 @@ public class Controller {
     }
 
     private void makeTesterRank() {
+        ResultTable.setItems(FXCollections.observableList(TesterRank.makeTestersReport(filterTesters(),filterDevices())));
+    }
+
+    private List<Tester> filterTesters(){
         List<Tester> testers;
         if (CountrysBox.getCheckModel().getCheckedItems().size()>0)
             testers = TesterCache.getTestersByCountry(CountrysBox.getCheckModel().getCheckedItems());
         else
             testers = TesterCache.getAllTesters();
+        return testers;
+    }
 
+    private List<Device> filterDevices(){
         List<Device> devices;
         if (DevicesBox.getCheckModel().getCheckedItems().size()>0)
             devices = DeviceCache.getDevicesByDeviceDescription(DevicesBox.getCheckModel().getCheckedItems());
         else
             devices = DeviceCache.getAllDevice();
-        ResultTable.setItems(FXCollections.observableList(TesterRank.makeTesterReport(testers,devices)));
+        return devices;
     }
 
     public void loadSplashScreen() {
         try {
             Launcher.isSplashLoaded = true;
 
-            StackPane pane = FXMLLoader.load(new File("src/main/resources/splash.fxml").toURL());
+            StackPane pane = FXMLLoader.load(new File("src/main/resources/fxml/splash.fxml").toURL());
             Root_StackPane.getChildren().setAll(pane);
 
             FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
@@ -95,7 +106,7 @@ public class Controller {
 
             FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
             fadeOut.setFromValue(1);
-            fadeOut.setToValue(0.2);
+            fadeOut.setToValue(0.15);
             fadeOut.setCycleCount(1);
 
             fadeIn.play();
@@ -106,7 +117,7 @@ public class Controller {
 
             fadeOut.setOnFinished((e) -> {
                     try {
-                        StackPane parentContent = FXMLLoader.load(new File("src/main/resources/mainmenu.fxml").toURL());
+                        StackPane parentContent = FXMLLoader.load(new File("src/main/resources/fxml/mainmenu.fxml").toURL());
                         Root_StackPane.getChildren().setAll(parentContent);
                     } catch (IOException ex) {
                         java.util.logging.Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);

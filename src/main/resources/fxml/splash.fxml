@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="406.0" fitWidth="484.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
          <image>
-            <Image url="@img/applause.jpg" />
+            <Image url="@../img/applause.jpg" />
          </image>
          <StackPane.margin>
             <Insets bottom="50.0" />
