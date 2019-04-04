@@ -10,4 +10,9 @@ class TesterDeviceCacheTest {
     void getCacheSize() {
         assertTrue(TesterDeviceCache.getCacheSize()>0);
     }
+
+    @Test
+    void isCurrentlyHavingThisDevice() {
+        assertTrue(TesterDeviceCache.isCurrentlyHavingThisDevice("1","1"));
+    }
 }

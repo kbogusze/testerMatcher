@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DeviceCache {
@@ -51,5 +52,19 @@ public class DeviceCache {
 
     public static List<String> getDeviceList() {
         return getInstance().list.stream().map(t->t.getDescription()).distinct().collect(Collectors.toList());
+    }
+
+    public static Optional<Device> getDeviceByID(String deviceId) {
+        return getInstance().list.stream().filter(d -> d.getDeviceId()!=null && d.getDeviceId().equals(deviceId)).findAny();
+    }
+
+    public static List<Device> getAllDevice() {
+        return getInstance().list;
+    }
+
+    public static List<Device> getDevicesByDeviceDescription(List<String> deviceList) {
+        return getInstance().list.stream()
+                .filter(t -> t.getDescription()!=null && deviceList.contains(t.getDescription()))
+                .collect(Collectors.toList());
     }
 }

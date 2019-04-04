@@ -53,4 +53,10 @@ public class BugCache {
         return getInstance().list.stream().filter(p ->p.getBugId()!=null && p.getBugId().equals(id)).findAny();
     }
 
+    public static long findOccurenceByDeviceIDAndTesterID(String deviceId, String testerId) {
+        return getInstance().list.stream()
+                .filter(p -> p.getDeviceId()!=null && p.getDeviceId().equals(deviceId)
+                    && p.getTesterId()!=null && p.getTesterId().equals(testerId)).count();
+    }
+
 }

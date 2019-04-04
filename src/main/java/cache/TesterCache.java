@@ -52,4 +52,14 @@ public class TesterCache {
     public static List<String> getCountryList() {
         return getInstance().list.stream().map(t->t.getCountry()).distinct().collect(Collectors.toList());
     }
+
+    public static List<Tester> getAllTesters() {
+        return getInstance().list;
+    }
+
+    public static List<Tester> getTestersByCountry(List<String> countryList) {
+        return getInstance().list.stream()
+                .filter(t -> t.getCountry()!=null && countryList.contains(t.getCountry()))
+                .collect(Collectors.toList());
+    }
 }

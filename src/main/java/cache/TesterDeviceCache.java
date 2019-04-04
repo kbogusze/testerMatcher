@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TesterDeviceCache {
     private static final String CSV_FILE_PATH = "csv/tester_device.csv";
@@ -45,5 +46,10 @@ public class TesterDeviceCache {
 
     public static int getCacheSize() {
         return getInstance().list.size();
+    }
+
+    public static boolean isCurrentlyHavingThisDevice(String testerId, String deviceId)
+    {
+        return getInstance().list.stream().filter(t->t.getTesterId().equals(testerId) && t.getDeviceId().equals(deviceId)).findAny().isPresent();
     }
 }
