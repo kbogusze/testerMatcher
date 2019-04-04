@@ -1,4 +1,4 @@
-package java.models;
+package models;
 
 public class Device {
     String deviceId;

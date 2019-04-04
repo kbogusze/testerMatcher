@@ -1,4 +1,4 @@
-package java.fxcontrollers;
+package fxcontrollers;
 
 public class Controller {
 }
