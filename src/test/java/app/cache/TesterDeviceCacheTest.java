@@ -1,4 +1,4 @@
-package cache;
+package app.cache;
 
 import org.junit.jupiter.api.Test;
 

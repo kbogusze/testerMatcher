@@ -1,33 +1,35 @@
-package fxcontrollers;
+package app.fxcontrollers;
 
 import app.Launcher;
-import cache.DeviceCache;
-import cache.TesterCache;
+import app.cache.DeviceCache;
+import app.cache.TesterCache;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import models.Device;
-import models.Tester;
-import models.TesterScore;
+import app.models.Device;
+import app.models.Tester;
+import app.models.TesterScore;
 import org.controlsfx.control.CheckComboBox;
-import report.TesterRank;
+import app.report.TesterRank;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-public class Controller {
+public class Controller implements Initializable {
     @FXML
     private StackPane Root_StackPane;
     @FXML
@@ -39,8 +41,8 @@ public class Controller {
     @FXML
     private TableView<TesterScore> ResultTable;
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         if(!Launcher.isSplashLoaded)
             loadSplashScreen();
 

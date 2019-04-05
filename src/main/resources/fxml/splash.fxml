@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #FFFF;"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxcontrollers.SplashController">
+<StackPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #FFFF;"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.fxcontrollers.SplashController">
    <children>
       <ImageView fitHeight="406.0" fitWidth="484.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
          <image>

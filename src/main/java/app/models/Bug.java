@@ -1,4 +1,4 @@
-package models;
+package app.models;
 
 import com.opencsv.bean.CsvBindByName;
 import lombok.Getter;
@@ -6,9 +6,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Device {
+public class Bug {
+    @CsvBindByName
+    String bugId;
     @CsvBindByName
     String deviceId;
     @CsvBindByName
-    String description;
+    String testerId;
+
 }

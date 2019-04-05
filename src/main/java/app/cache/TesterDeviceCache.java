@@ -1,17 +1,13 @@
-package cache;
+package app.cache;
 
+import app.models.TesterDevice;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import models.TesterDevice;
 
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TesterDeviceCache {
     private static final String CSV_FILE_PATH = "/csv/tester_device.csv";
@@ -20,15 +16,7 @@ public class TesterDeviceCache {
     private List<TesterDevice> list;
 
     private TesterDeviceCache() {
-        try {
-            readCSV();
-        } catch (IOException e) {
-            e.printStackTrace();
-            list = new ArrayList<>();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            list = new ArrayList<>();
-        }
+        readCSV();
     }
 
     private static TesterDeviceCache getInstance() {
@@ -38,8 +26,9 @@ public class TesterDeviceCache {
         return instance;
     }
 
-    private void readCSV() throws IOException, URISyntaxException {
-        Reader reader = Files.newBufferedReader(Paths.get(getClass().getResource(CSV_FILE_PATH).toURI()));
+    private void readCSV(){
+        Reader reader = new BufferedReader(new InputStreamReader(
+                this.getClass().getResourceAsStream(CSV_FILE_PATH)));
         CsvToBean<TesterDevice> csvToBean = new CsvToBeanBuilder(reader)
                 .withType(TesterDevice.class)
                 .withIgnoreLeadingWhiteSpace(true)

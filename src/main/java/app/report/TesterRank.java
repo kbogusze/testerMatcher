@@ -1,10 +1,10 @@
-package report;
+package app.report;
 
-import cache.BugCache;
-import cache.TesterDeviceCache;
-import models.Device;
-import models.Tester;
-import models.TesterScore;
+import app.cache.BugCache;
+import app.cache.TesterDeviceCache;
+import app.models.Device;
+import app.models.Tester;
+import app.models.TesterScore;
 
 import java.util.ArrayList;
 import java.util.List;

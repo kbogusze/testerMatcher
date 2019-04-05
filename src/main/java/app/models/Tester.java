@@ -1,4 +1,4 @@
-package models;
+package app.models;
 
 import com.opencsv.bean.CsvBindByName;
 import lombok.Getter;

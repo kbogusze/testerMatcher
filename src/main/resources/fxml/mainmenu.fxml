@@ -10,7 +10,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import org.controlsfx.control.CheckComboBox?>
-<StackPane fx:id="Root_StackPane" prefHeight="642.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxcontrollers.Controller">
+
+<StackPane fx:id="Root_StackPane" prefHeight="642.0" xmlns:fx="http://javafx.com/fxml" fx:controller="app.fxcontrollers.Controller">
    <children>
    <VBox prefHeight="400.0" prefWidth="400.0" spacing="5.0"   >
       <children>

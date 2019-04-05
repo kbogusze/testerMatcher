@@ -1,10 +1,10 @@
-package report;
+package app.report;
 
-import cache.DeviceCache;
-import cache.TesterCache;
-import models.Device;
-import models.Tester;
-import models.TesterScore;
+import app.cache.DeviceCache;
+import app.cache.TesterCache;
+import app.models.Device;
+import app.models.Tester;
+import app.models.TesterScore;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

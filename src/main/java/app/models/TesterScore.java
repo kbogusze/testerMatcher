@@ -1,5 +1,5 @@
-package models;
-import cache.DeviceCache;
+package app.models;
+import app.cache.DeviceCache;
 import lombok.Getter;
 import lombok.Setter;
 
