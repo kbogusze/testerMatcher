@@ -19,7 +19,6 @@ import models.TesterScore;
 import org.controlsfx.control.CheckComboBox;
 import report.TesterRank;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -96,7 +95,7 @@ public class Controller {
         try {
             Launcher.isSplashLoaded = true;
 
-            StackPane pane = FXMLLoader.load(new File("src/main/resources/fxml/splash.fxml").toURL());
+            StackPane pane = FXMLLoader.load(getClass().getResource("/fxml/splash.fxml"));
             Root_StackPane.getChildren().setAll(pane);
 
             FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
@@ -117,7 +116,7 @@ public class Controller {
 
             fadeOut.setOnFinished((e) -> {
                     try {
-                        StackPane parentContent = FXMLLoader.load(new File("src/main/resources/fxml/mainmenu.fxml").toURL());
+                        StackPane parentContent = FXMLLoader.load(getClass().getResource("/fxml/mainmenu.fxml"));
                         Root_StackPane.getChildren().setAll(parentContent);
                     } catch (IOException ex) {
                         java.util.logging.Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);

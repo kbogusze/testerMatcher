@@ -6,6 +6,7 @@ import models.Tester;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class TesterCache {
 
-    private static final String CSV_FILE_PATH = "csv/testers.csv";
+    private static final String CSV_FILE_PATH = "/csv/testers.csv";
     private static TesterCache instance;
 
     private List<Tester> list;
@@ -25,7 +26,9 @@ public class TesterCache {
         } catch (IOException e) {
             e.printStackTrace();
             list = new ArrayList<>();
-        } finally {
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            list = new ArrayList<>();
         }
     }
 
@@ -36,8 +39,8 @@ public class TesterCache {
         return instance;
     }
 
-    private void readCSV() throws IOException {
-        Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
+    private void readCSV() throws IOException, URISyntaxException {
+        Reader reader = Files.newBufferedReader(Paths.get(getClass().getResource(CSV_FILE_PATH).toURI()));
         CsvToBean<Tester> csvToBean = new CsvToBeanBuilder(reader)
                 .withType(Tester.class)
                 .withIgnoreLeadingWhiteSpace(true)

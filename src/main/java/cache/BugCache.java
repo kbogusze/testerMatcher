@@ -6,6 +6,7 @@ import models.Bug;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Optional;
 
 public class BugCache {
 
-    private static final String CSV_FILE_PATH = "csv/bugs.csv";
+    private static final String CSV_FILE_PATH = "/csv/bugs.csv";
     private static BugCache instance;
 
     private List<Bug> list;
@@ -25,7 +26,9 @@ public class BugCache {
         } catch (IOException e) {
             e.printStackTrace();
             list = new ArrayList<>();
-        } finally {
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            list = new ArrayList<>();
         }
     }
 
@@ -36,8 +39,8 @@ public class BugCache {
         return instance;
     }
 
-    private void readCSV() throws IOException {
-         Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
+    private void readCSV() throws IOException, URISyntaxException {
+         Reader reader = Files.newBufferedReader(Paths.get(getClass().getResource(CSV_FILE_PATH).toURI()));
          CsvToBean<Bug> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(Bug.class)
                     .withIgnoreLeadingWhiteSpace(true)
